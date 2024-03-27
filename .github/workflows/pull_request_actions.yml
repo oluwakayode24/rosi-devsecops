@@ -38,7 +38,7 @@ jobs:
      # WORKING_DIRECTORY: './'
   plan:
     name: "Terraform Init,Validate and Plan"
-    needs: [ kics ]
+    #needs: [ kics ]
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-20.04    #the Operating system the workflow will run on
     defaults:
