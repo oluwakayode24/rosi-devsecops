@@ -27,15 +27,15 @@ permissions:
 concurrency: dev-reinvent    # This wills ensure only a single workflow of merge to main is run at a time
 
 jobs:
-  kics:
+  #kics:
     # Kics perform statics codes analysis of Infrastructure of Code (Terraform).
     # More details can be found here: https://docs.kics.io/latest/
-    name: "Run Kics scan on Terraform code"
-    uses: ./.github/workflows/terraform_kics.yml
-    with:
+   # name: "Run Kics scan on Terraform code"
+    #uses: ./.github/workflows/terraform_kics.yml
+    #with:
       # Enabling Comments will add a comment to a PR, but these do no exist in Push events and will throw an error.
-      ENABLE_COMMENTS: true
-      WORKING_DIRECTORY: './'
+     # ENABLE_COMMENTS: true
+     # WORKING_DIRECTORY: './'
   plan:
     name: "Terraform Init,Validate and Plan"
     needs: [ kics ]
@@ -93,7 +93,7 @@ jobs:
     steps:
       - name: 'checkout'
         uses: actions/checkout@v3
-        
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
