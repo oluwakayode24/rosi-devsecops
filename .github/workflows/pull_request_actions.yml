@@ -18,7 +18,7 @@ env:                        #environment variables containing terraform version 
   # TERRAGRUNT_VERSION: 0.40.0
   TERRAFORM_WORKING_DIR: './infrastructure/region/us-east-1/dev/ec2' #terraform working directory path
 
-#Give Github actions permission to repo
+#Give Github actions permission to repository
 permissions:
   contents: write       # write permissions are needed in order to commit changes back to the branches
   issues: write         # write permission are needed in order to create comments
