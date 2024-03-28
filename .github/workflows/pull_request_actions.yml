@@ -27,18 +27,19 @@ permissions:
 concurrency: dev-reinvent    # This wills ensure only a single workflow of merge to main is run at a time
 
 jobs:
-  #kics:
-    # Kics perform statics codes analysis of Infrastructure of Code (Terraform).
-    # More details can be found here: https://docs.kics.io/latest/
-   # name: "Run Kics scan on Terraform code"
-    #uses: ./.github/workflows/terraform_kics.yml
-    #with:
+  kics:
+    #Kics perform statics codes analysis of Infrastructure of Code (Terraform).
+    #More details can be found here: https://docs.kics.io/latest/
+    name: "Run Kics scan on Terraform code"
+    uses: ./.github/workflows/terraform_kics.yml
+    with:
       # Enabling Comments will add a comment to a PR, but these do no exist in Push events and will throw an error.
-     # ENABLE_COMMENTS: true
-     # WORKING_DIRECTORY: './'
+      ENABLE_COMMENTS: true
+      WORKING_DIRECTORY: 'modules/ec2'
+
   plan:
     name: "Terraform Init,Validate and Plan"
-    #needs: [ kics ]
+    needs: [ kics ]
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-20.04    #the Operating system the workflow will run on
     defaults:
@@ -50,6 +51,7 @@ jobs:
         with:
            # This will checkout the branch the PR is coming from in the head repo to avoid checkoing out repo in a detached state
            ref: ${{ github.event.pull_request.head.ref }}
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -60,6 +62,7 @@ jobs:
       #   uses: autero1/action-terragrunt@v1.2.0
       #   with:
       #     terragrunt_version: ${{ env.TERRAGRUNT_VERSION }}
+
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1-node16
         with:
@@ -68,6 +71,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Terraform Init
         id: init
         run: terraform init #terragrunt run-all init -no-color --terragrunt-non-interactive
