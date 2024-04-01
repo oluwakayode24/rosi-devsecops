@@ -123,8 +123,8 @@ jobs:
         id: apply
         run: terraform apply -auto-approve #run-all apply -no-color --terragrunt-non-interactive
         continue-on-error: true
-        run: |
-          exit 1
+        #run: |
+         # exit 1
       
     # - name: Clean up
       # run: terraform destroy -auto-approve
