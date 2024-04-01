@@ -27,7 +27,7 @@ jobs:
         fail_on: 'high,medium' #enforicng kics to stop plan job to run if any high or medium severity is found in the code
         token: ${{ secrets.GITHUB_TOKEN }}
         output_path: myResults/
-        ignore_on_exit: 'none'
+        #ignore_on_exit: 'none'
         enable_comments: ${{ inputs.ENABLE_COMMENTS }}
 
     - name: Display KICS results
