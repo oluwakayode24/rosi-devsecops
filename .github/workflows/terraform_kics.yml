@@ -21,7 +21,7 @@ jobs:
         ref: ${{ github.event.pull_request.head.ref }}
 
     - name: Run KICS Scan
-      uses: checkmarx/kics-github-action@latest
+      uses: checkmarx/kics-github-action@v2.0.0
       with:
         path: ${{ inputs.WORKING_DIRECTORY }}
         #fail_on: 'high' #enforicng kics to stop plan job to run if any high or medium severity is found in the code
