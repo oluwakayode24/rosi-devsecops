@@ -39,7 +39,7 @@ jobs:
 
   plan:
     name: "Terraform Init,Validate and Plan"
-    needs: [ kics ]
+    needs: [ kics ] #runs only when kics (line 30) is completed
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-20.04    #the Operating system the workflow will run on
     defaults:
