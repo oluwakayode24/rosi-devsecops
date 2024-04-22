@@ -122,7 +122,7 @@ jobs:
       - name: Terraform Apply
         id: apply
         run: terraform apply -auto-approve #run-all apply -no-color --terragrunt-non-interactive
-        continue-on-error: true
+        continue-on-error: false
         
       
     # - name: Clean up
